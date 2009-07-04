@@ -593,7 +593,7 @@ sub test_report {
     # confirm that we indeed got the test output we expected
     # (whether all or just a truncated portion)
     if ( length $joined_output > $max_report_length ) {
-        $joined_output = substr( $joined_output, 0, $max_report_length );
+        $joined_output = substr( $joined_output, 0, int($max_report_length/2) ) . "\n" . substr( $joined_output, -int($max_report_length)/2);
     }
 
     like( $t::Helper::sent_report, '/' . quotemeta($joined_output) . '/ms',
